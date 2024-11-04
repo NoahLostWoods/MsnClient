@@ -21,16 +21,16 @@ public class MessengerClient {
 
             System.out.println("Connesso al server!");
 
-            // Avvia un thread per ascoltare i messaggi dal server
-            new Thread(new ServerListener(socket, in)).start();
-
             // Richiedi nome utente
             BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
             System.out.print("Inserisci il tuo nome utente: ");
             String username = consoleInput.readLine();
 
-            // Messaggio di benvenuto
-            out.println(username + " si è connesso!");
+            // Invia il nome utente al server
+            out.println(username); // Invia il nome utente al server
+
+            // Avvia un thread per ascoltare i messaggi dal server
+            new Thread(new ServerListener(socket, in)).start();
 
             // Legge input da console per inviare messaggi al server
             String message;
