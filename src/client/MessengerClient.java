@@ -1,13 +1,10 @@
 package client;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
-import java.net.Socket;
+import client.handlers.ServerListener;
+import java.io.*;
+import java.net.*;
 
 public class MessengerClient {
-
     private static final String SERVER_ADDRESS = "localhost"; // Indirizzo IP del server
     private static final int SERVER_PORT = 12345; // Porta del server
 
@@ -27,21 +24,24 @@ public class MessengerClient {
             // Avvia un thread per ascoltare i messaggi dal server
             new Thread(new ServerListener(socket, in)).start();
 
-            // Legge input da console per inviare messaggi al server
+            // Richiedi nome utente
             BufferedReader consoleInput = new BufferedReader(new InputStreamReader(System.in));
+            System.out.print("Inserisci il tuo nome utente: ");
+            String username = consoleInput.readLine();
+
+            // Messaggio di benvenuto
+            out.println(username + " si è connesso!");
+
+            // Legge input da console per inviare messaggi al server
             String message;
             while ((message = consoleInput.readLine()) != null) {
-                sendMessage(message);
+                // Invia un messaggio specificando il destinatario
+                out.println(message); // formato: DESTINATARIO:MESSAGGIO
             }
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    // Metodo per inviare messaggi al server
-    public void sendMessage(String message) {
-        out.println(message);
     }
 
     public static void main(String[] args) {
