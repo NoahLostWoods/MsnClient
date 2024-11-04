@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 
 public class MessengerClient {
-    private static final String SERVER_ADDRESS = "localhost"; // Indirizzo IP del server
+    private static final String SERVER_ADDRESS = "192.168.1.16"; // Indirizzo IP del server
     private static final int SERVER_PORT = 12345; // Porta del server
 
     private Socket socket;
