@@ -1,4 +1,4 @@
-package client.handlers;
+package client;
 
 import java.io.*;
 import java.net.Socket;
@@ -17,7 +17,7 @@ public class ServerListener implements Runnable {
         String message;
         try {
             while ((message = in.readLine()) != null) {
-                System.out.println("Messaggio dal server: " + message);
+                System.out.println(message);
             }
         } catch (IOException e) {
             e.printStackTrace();
